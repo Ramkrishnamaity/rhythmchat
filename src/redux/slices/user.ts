@@ -1,6 +1,6 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 
-interface profile{
+interface profile {
     about: string
     firstName: string
     lastName: string
@@ -9,13 +9,13 @@ interface profile{
     updatedOn: Date
 }
 interface userSlice{
-    token: string,
+    token: string | null,
     profile: profile | null
 }
 
 const initialState: userSlice = {
-    token: '',
-    profile: null
+    token: localStorage.getItem('token')? localStorage.getItem('token'): null,
+    profile: localStorage.getItem('profile')? JSON.parse(localStorage.getItem('profile') ?? ''): null
 }
 
 export const userSlice = createSlice({
