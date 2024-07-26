@@ -13,16 +13,8 @@ const Home: React.FC = () => {
 
 
   return (
-    <div className='flex flex-col justify-around items-center text-center w-full sm:px-10 px-0 h-full sm:rounded-2xl rounded-none bg-highBlack text-[white]'>
-      <div className='text-2xl font-bold tracking-wider'>Rhythm Chat</div>
-      <div className='space-y-4'>
-        <p className='p-2'>Inspiring tech solutions for a bright future ahead</p>
-        <button
-          className='bg-[white] sm:h-[40px] h-[35px] rounded-xl w-full text-highBlack'
-          onClick={()=> navigate('/login')}
-          >Get Started
-        </button>
-      </div>
+    <div className='flex justify-center items-center w-full h-full rounded-3xl bg-[white]'>
+
     </div>
   )
 }

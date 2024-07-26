@@ -6,17 +6,22 @@ module.exports = {
   theme: {
     screens: {
       sm: '400px',
-      md: '768px',
-      lg: '1020px',
-      xl: '1520px',
+      md: '930px',
+      lg: '1000px',
+      xl: '1500px',
     },
     colors: {
-      'lowBlack': '#3B3E46',
-      'highBlack': '#23262F'
+      'wrapper': '#3B3E46',
+      'black': '#23262F'
     },
     fontFamily: {
     },
-    extend: {},
+    extend: {
+      backgroundImage: {
+        'top': "url('assets/bg.jpg')",
+        // 'footer-texture': "url('/img/footer-texture.png')",
+      }
+    },
   },
   plugins: [],
 }
