@@ -45,22 +45,22 @@ const Login: React.FC = () => {
 
 
   return (
-    <div className='w-full mx-auto sm:rounded-3xl rounded-none text-[white] bg-wrapper sm:h-max h-full sm:w-[400px] px-5 py-10 tracking-widest text-lg space-y-8'>
+    <div className='w-full mx-auto sm:rounded-3xl rounded-none text-[white] bg-wrapper sm:h-max h-full sm:w-[400px] px-5 py-10 tracking-widest text-md space-y-8'>
       <h1 className='text-center font-medium text-3xl mb-10 cursor-pointer'>ℝ𝕙𝕪𝕥𝕙𝕞𝕔𝕙𝕒𝕥</h1>
       <form className='space-y-10' onSubmit={login}>
         <div className='space-y-3'>
           <div className='w-full space-y-2'>
             <label htmlFor='email'>Email</label>
             <input type='email' name='email' readOnly={disable} onChange={changeHandler} value={formData.email}
-            className='text-[black] w-full p-3 rounded-lg shadow-md outline-none text-sm tracking-wider' 
+            className='text-[black] w-full p-2 rounded-lg shadow-md outline-none text-sm tracking-wider' 
             required={true} />
           </div>
           <div className='w-full space-y-2 relative'>
             <label htmlFor='password'>Password</label>
             <input type={showPassword ? 'text' : 'password'} name='password' readOnly={disable} onChange={changeHandler} value={formData.password}
-            className='text-[black] w-full p-3 rounded-lg shadow-md outline-none text-sm tracking-wider' 
+            className='text-[black] w-full p-2 rounded-lg shadow-md outline-none text-sm tracking-wider' 
             required={true} />
-            <span className='absolute right-3 bottom-3 text-[black]' onClick={clickHandler}>
+            <span className='absolute right-3 bottom-2 text-[black]' onClick={clickHandler}>
               {
                 showPassword ? <GoEyeClosed size={20} /> : <GoEye size={20} />
               }
