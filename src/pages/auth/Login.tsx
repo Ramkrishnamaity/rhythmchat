@@ -45,7 +45,7 @@ const Login: React.FC = () => {
 
 
   return (
-    <div className='w-full mx-auto sm:rounded-3xl rounded-none text-[white] bg-wrapper sm:h-max h-full sm:w-[400px] px-5 py-10 tracking-widest text-md space-y-8'>
+    <div className='w-full xs:my-5 mx-auto xs:rounded-3xl rounded-none text-[white] bg-wrapper xs:h-max h-[100vh] xs:w-[400px] px-5 py-10 tracking-widest text-md space-y-8'>
       <h1 className='text-center font-medium text-3xl mb-10 cursor-pointer'>ℝ𝕙𝕪𝕥𝕙𝕞𝕔𝕙𝕒𝕥</h1>
       <form className='space-y-10' onSubmit={login}>
         <div className='space-y-3'>
@@ -82,7 +82,7 @@ const Login: React.FC = () => {
         >
           <span><FcGoogle size={25} /></span> Log in with Google
         </button>
-        <p className='text-center text-sm opacity-70'>Don't have an account? <Link to="/register" className='text-richBlue'>Sign Up</Link></p>
+        <p className='text-center text-sm opacity-70'>Don't have an account? <Link to="/signup" className='text-richBlue'>Sign Up</Link></p>
       </div>
     </div>
   )

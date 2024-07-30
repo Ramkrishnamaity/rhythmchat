@@ -6,7 +6,7 @@ import { FcGoogle } from "react-icons/fc";
 import { GoEyeClosed, GoEye } from 'react-icons/go';
 import { ImSpinner9 } from "react-icons/im";
 import { IoIosCheckmarkCircle } from "react-icons/io";
-import { LoginFormData } from '../../lib/types/auth';
+import { SignUpFormData } from '../../lib/types/auth';
 
 const SignUp: React.FC = () => {
 
@@ -44,9 +44,11 @@ const SignUp: React.FC = () => {
 
     //   }
 
+    const [formData, setFormData] = useState<SignUpFormData>({
+        firstName: '', lastName: '', email: '', password: ''
+    })
     const [showPassword, setShowPassword] = useState<boolean>(false)
     const [isOtpSent, setIsOtpSent] = useState<boolean>(false)
-    const [email, setEmail] = useState<string>("")
     const [disable, setDisable] = useState<boolean>(false)
 
     function clickHandler() {
@@ -54,8 +56,14 @@ const SignUp: React.FC = () => {
     }
 
     function changeHandler(e: ChangeEvent<HTMLInputElement>) {
-        setEmail(e.target.value)
+        setFormData((prev) => {
+            return { ...prev, [e.target.name]: e.target.value }
+        })
     }
+
+    // function changeHandler(e: ChangeEvent<HTMLInputElement>) {
+    //     setEmail(e.target.value)
+    // }
 
     //   async function signUpHandler(formData: FormData) {
     //     try {
@@ -109,33 +117,37 @@ const SignUp: React.FC = () => {
 
 
     return (
-        <div className='w-full mx-auto sm:rounded-3xl rounded-none text-[white] bg-wrapper sm:h-max h-full sm:w-[400px] px-5 py-10 tracking-widest text-md space-y-8'>
+        <div className='w-full xs:my-5 mx-auto xs:rounded-3xl rounded-none text-[white] bg-wrapper xs:h-max h-full xs:w-[400px] px-5 py-10 tracking-widest text-md space-y-8'>
             <h1 className='text-center font-medium text-3xl mb-10 cursor-pointer'>ℝ𝕙𝕪𝕥𝕙𝕞𝕔𝕙𝕒𝕥</h1>
             <form className='space-y-10'>
                 <div className='space-y-3'>
-                    <div className='sm:flex-row flex flex-col gap-1'>
+                    <div className='xs:flex-row flex flex-col gap-1'>
                         <div className='w-full space-y-2'>
                             <label htmlFor='firstName'>First Name</label>
-                            <input type='text' name='firstName' readOnly={disable}
+                            <input type='text' name='firstName' readOnly={disable} value={formData.firstName}
+                                onChange={changeHandler}
                                 className='text-[black] w-full p-2 rounded-lg shadow-md outline-none text-sm tracking-wider'
                                 required={true} />
                         </div>
                         <div className='w-full space-y-2'>
                             <label htmlFor='lastName'>Last Name</label>
-                            <input type='text' name='lastName' readOnly={disable}
+                            <input type='text' name='lastName' readOnly={disable} value={formData.lastName}
+                                onChange={changeHandler}
                                 className='text-[black] w-full p-2 rounded-lg shadow-md outline-none text-sm tracking-wider'
                                 required={true} />
                         </div>
                     </div>
                     <div className='w-full space-y-2'>
                         <label htmlFor='email'>Email</label>
-                        <input type='email' name='email' value={email} onChange={changeHandler} readOnly={isOtpSent}
+                        <input type='email' name='email' value={formData.email} readOnly={isOtpSent}
+                            onChange={changeHandler}
                             className='text-[black] w-full p-2 rounded-lg shadow-md outline-none text-sm tracking-wider'
                             required={true} />
                     </div>
                     <div className='w-full space-y-2 relative'>
                         <label htmlFor='password'>Password</label>
-                        <input type={showPassword ? 'text' : 'password'} readOnly={disable} name='password'
+                        <input type={showPassword ? 'text' : 'password'} readOnly={disable} name='password' value={formData.password}
+                            onChange={changeHandler}
                             className='text-[black] w-full p-2 rounded-lg shadow-md outline-none text-sm tracking-wider'
                             required={true} />
                         <span className='absolute text-[black] right-3 bottom-2' onClick={clickHandler}>
