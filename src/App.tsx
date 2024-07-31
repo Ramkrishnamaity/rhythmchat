@@ -8,6 +8,7 @@ import { useAppSelector } from "./redux/hooks";
 import { getRequest } from "./lib/utils/HttpsClient";
 import { endpoints } from "./lib/utils/Endpoint";
 import Protector from "./components/common/Protector";
+import SignUp from "./pages/auth/SignUp";
 
 const App: React.FC = () => {
 
@@ -25,12 +26,13 @@ const App: React.FC = () => {
   }, [])
 
   return (
-    <div className='flex justify-center items-center w-[100vw] h-[100vh] bg-top bg-cover'>
+    <div className='z-0 flex justify-center items-center w-[100vw] min-h-[100vh] bg-top bg-cover'>
 
       <Routes>
         <Route path="/" element={<Protector><Home /></Protector>} />
         <Route path="/dashboard" element={<Protector><Dashboard /></Protector>} />
         <Route path="/login" element={<Protector><Login /></Protector>} />
+        <Route path="/signup" element={<Protector><SignUp /></Protector>} />
         <Route path="*" element={<NotFound />} />
       </Routes>
 
