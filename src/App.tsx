@@ -26,7 +26,7 @@ const App: React.FC = () => {
   }, [])
 
   return (
-    <div className='flex justify-center items-center w-[100vw] min-h-[100vh] py-0 bg-top bg-cover'>
+    <div className='z-0 flex justify-center items-center w-[100vw] min-h-[100vh] bg-top bg-cover'>
 
       <Routes>
         <Route path="/" element={<Protector><Home /></Protector>} />

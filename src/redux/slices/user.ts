@@ -22,10 +22,10 @@ export const userSlice = createSlice({
     name: "user",
     initialState,
     reducers: {
-        setToken(state, action: PayloadAction<string>) {
+        setToken(state, action: PayloadAction<string | null>) {
             state.token = action.payload
         },
-        setProfile(state, action: PayloadAction<profile>) {
+        setProfile(state, action: PayloadAction<profile | null>) {
             state.profile = action.payload
         }
     }

@@ -20,7 +20,7 @@ const Protector: React.FC<CommonPropsType> = ({ children }) => {
                 <>{children}</>
             )
         }
-    } else if (token) {
+    } else {
         if (nonUserProtectedRoutes.includes(location.pathname)) {
             return <Navigate to='/login' />
         } else {
@@ -28,10 +28,6 @@ const Protector: React.FC<CommonPropsType> = ({ children }) => {
                 <>{children}</>
             )
         }
-    } else {
-        return (
-            <>{children}</>
-        )
     }
 
 }

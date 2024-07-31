@@ -1,7 +1,7 @@
-import React, { ChangeEvent, useState } from 'react'
+import React, { ChangeEvent, FormEvent, useState } from 'react'
 import { postRequest } from '../../lib/utils/HttpsClient'
 import { endpoints } from '../../lib/utils/Endpoint'
-import { Link, useNavigate } from 'react-router-dom'
+import { Link } from 'react-router-dom'
 import { FcGoogle } from "react-icons/fc";
 import { GoEyeClosed, GoEye } from 'react-icons/go';
 import { ImSpinner9 } from "react-icons/im";
@@ -9,7 +9,6 @@ import { LoginFormData } from '../../lib/types/auth';
 
 const Login: React.FC = () => {
 
-  const navigate = useNavigate()
   const [showPassword, setShowPassword] = useState<boolean>(false)
   const [disable, setDisable] = useState<boolean>(false)
   const [formData, setFormData] = useState<LoginFormData>({
@@ -19,23 +18,23 @@ const Login: React.FC = () => {
   function clickHandler() {
     setShowPassword((prev) => !prev)
   }
-  
+
   function changeHandler(e: ChangeEvent<HTMLInputElement>) {
     setFormData((prev) => {
-      return {...prev, [e.target.name]: e.target.value}
+      return { ...prev, [e.target.name]: e.target.value }
     })
   }
 
-  async function login() {
-
+  async function login(e: FormEvent<HTMLFormElement>) {
+    e.preventDefault()
+    
     setDisable(true)
-
     const response = await postRequest(endpoints.login, formData)
     console.log(response, "response")
     if (response.status) {
       localStorage.setItem('token', response.data.token)
       localStorage.setItem('profile', JSON.stringify(response.data.profile))
-      navigate('/dashboard')
+      window.location.reload()
     } else {
       setDisable(false)
       setFormData({email: '', password: ''})
@@ -52,14 +51,14 @@ const Login: React.FC = () => {
           <div className='w-full space-y-2'>
             <label htmlFor='email'>Email</label>
             <input type='email' name='email' readOnly={disable} onChange={changeHandler} value={formData.email}
-            className='text-[black] w-full p-2 rounded-lg shadow-md outline-none text-sm tracking-wider' 
-            required={true} />
+              className='text-[black] w-full p-2 rounded-lg shadow-md outline-none text-sm tracking-wider'
+              required={true} />
           </div>
           <div className='w-full space-y-2 relative'>
             <label htmlFor='password'>Password</label>
             <input type={showPassword ? 'text' : 'password'} name='password' readOnly={disable} onChange={changeHandler} value={formData.password}
-            className='text-[black] w-full p-2 rounded-lg shadow-md outline-none text-sm tracking-wider' 
-            required={true} />
+              className='text-[black] w-full p-2 rounded-lg shadow-md outline-none text-sm tracking-wider'
+              required={true} />
             <span className='absolute right-3 bottom-2 text-[black]' onClick={clickHandler}>
               {
                 showPassword ? <GoEyeClosed size={20} /> : <GoEye size={20} />
