@@ -10,5 +10,5 @@ export type SignUpFormData = {
     lastName: string
     email: string
     password: string
-    
+    otp: string
 }

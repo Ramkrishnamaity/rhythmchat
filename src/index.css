@@ -6,6 +6,7 @@
 body {
     width: 100vw;
     min-height: 100vh;
+    background: #4D4E56;
     overflow-x: hidden;
     box-sizing: border-box;
 }
