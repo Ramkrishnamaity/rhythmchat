@@ -87,7 +87,7 @@ const SignUp: React.FC = () => {
 
     return (
         <div className='backdrop-blur-sm w-full xs:my-5 xs:rounded-3xl rounded-none text-[white] bg-wrapper xs:h-max xs:w-[400px] px-5 py-10 tracking-widest text-md space-y-8'>
-            <h1 className='text-center font-medium text-3xl mb-10 cursor-pointer'>ℝ𝕙𝕪𝕥𝕙𝕞𝕔𝕙𝕒𝕥</h1>
+            <h1 className='text-center text-blue font-medium text-3xl mb-10 cursor-pointer'>ℝ𝕙𝕪𝕥𝕙𝕞𝕔𝕙𝕒𝕥</h1>
             <form className='space-y-10' onSubmit={signup}>
                 <div className='space-y-3'>
                     <div className='xs:flex-row flex flex-col gap-1'>

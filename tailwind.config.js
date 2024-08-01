@@ -13,9 +13,12 @@ module.exports = {
     },
     colors: {
       'wrapper': '#3B3E46',
-      'black': '#23262F'
+      'lowBlack': '#282B34',
+      'black': '#23262F',
+      'blue': '#2F80ED'
     },
     fontFamily: {
+      poppins: ["poppins", "sans sarif"]
     },
     extend: {
       backgroundImage: {

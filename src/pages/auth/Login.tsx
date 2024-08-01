@@ -60,7 +60,7 @@ const Login: React.FC = () => {
 
   return (
     <div className='backdrop-blur-sm w-full xs:my-5 mx-auto xs:rounded-3xl rounded-none text-[white] bg-wrapper xs:h-max h-[100vh] xs:w-[400px] px-5 py-10 tracking-widest text-md space-y-8'>
-      <h1 className='text-center font-medium text-3xl mb-10 cursor-pointer'>ℝ𝕙𝕪𝕥𝕙𝕞𝕔𝕙𝕒𝕥</h1>
+      <h1 className='text-center font-medium text-blue text-3xl mb-10 cursor-pointer'>ℝ𝕙𝕪𝕥𝕙𝕞𝕔𝕙𝕒𝕥</h1>
       <form className='space-y-10' onSubmit={login}>
         <div className='space-y-3'>
           <div className='w-full space-y-2'>

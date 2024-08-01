@@ -7,11 +7,12 @@ import { IoMdNotificationsOutline } from "react-icons/io";
 
 interface DashboardHeaderProps {
     setShowNavbar: React.Dispatch<React.SetStateAction<boolean>>
+    setRight: React.Dispatch<React.SetStateAction<string>>
     showNavbar: boolean
     notification: boolean
 }
 
-const Header: React.FC<DashboardHeaderProps> = ({ setShowNavbar, showNavbar, notification }) => {
+const Header: React.FC<DashboardHeaderProps> = ({ setRight, setShowNavbar, showNavbar, notification }) => {
 
     const { profile } = useAppSelector(state => state.user)
 
@@ -25,18 +26,18 @@ const Header: React.FC<DashboardHeaderProps> = ({ setShowNavbar, showNavbar, not
                         showNavbar ? <RxCross2 size={23} /> : <HiBars3CenterLeft size={25} />
                     }
                 </span>
-                <div className='hidden sm:flex gap-3 items-center'>
-                    <div className='border-2 rounded-full'>
-                        <img src={profile?.image} className='w-[25px] h-[25px] object-cover rounded-full' />
+                <div className='hidden text-md font-semibold uppercase tracking-widest sm:flex gap-3 items-center'>
+                    <div className='border-2 rounded-full cursor-pointer' onClick={()=>setRight('Profile')}>
+                        <img src={profile?.image} className='w-[30px] h-[30px] object-cover rounded-full' />
                     </div>
                     <p>{profile?.firstName} {profile?.lastName}</p>
                 </div>
             </div>
             <div className='flex items-center md:gap-4 gap-3'>
                 <button
-                    className='bg-[#2F80ED] rounded-md px-2 py-1 flex items-center justify-between gap-2'>
-                    <p><FaPlus size={15} /></p>
-                    <p className='md:block hidden tracking-wider'>New Chat</p>
+                    className='bg-blue rounded-md sm:px-2 px-1 py-1 sm:py-[6px] flex items-center justify-between gap-2'>
+                    <p><FaPlus size={12} /></p>
+                    <p className='sm:block hidden tracking-wider text-xs'>New Chat</p>
                 </button>
                 <div className='relative cursor-pointer'>
                     <IoMdNotificationsOutline size={23} color='#2F80ED' />

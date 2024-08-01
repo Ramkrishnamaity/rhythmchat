@@ -26,7 +26,7 @@ const App: React.FC = () => {
   }, [])
 
   return (
-    <div className='z-0 flex justify-center items-center w-[100vw] min-h-[100vh]'>
+    <div className='font-poppins z-0 flex justify-center items-center w-[100vw] min-h-[100vh]'>
 
       <Routes>
         <Route path="/" element={<Protector><Home /></Protector>} />
