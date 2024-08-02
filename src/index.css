@@ -3,6 +3,24 @@
 @tailwind components;
 @tailwind utilities;
 
+/* Scroll bar CSS */
+
+/* width */
+::-webkit-scrollbar {
+    width: 3px;
+}
+ 
+/* Track */
+::-webkit-scrollbar-track {
+    background: #000814;
+}
+ 
+/* Handle */
+::-webkit-scrollbar-thumb {
+    background: #afb2bf;
+    border-radius: 10px;
+}
+
 
 body {
     width: 100vw;

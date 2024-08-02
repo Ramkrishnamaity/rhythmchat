@@ -21,7 +21,7 @@ const Header: React.FC<DashboardHeaderProps> = ({ setRight, setShowNavbar, showN
             <div>
                 <span
                     onClick={() => setShowNavbar((prev) => !prev)}
-                    className='sm:hidden block'>
+                    className='sm:hidden block cursor-pointer'>
                     {
                         showNavbar ? <RxCross2 size={23} /> : <HiBars3CenterLeft size={25} />
                     }

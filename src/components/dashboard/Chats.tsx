@@ -1,4 +1,4 @@
-import React, { ChangeEvent, KeyboardEvent, useEffect, useState } from 'react'
+import React, { ChangeEvent, KeyboardEvent, useState } from 'react'
 import { IoSearchOutline } from "react-icons/io5";
 import { RxCross2 } from "react-icons/rx";
 
@@ -10,7 +10,6 @@ const Chats: React.FC = () => {
 
 
     function changeHandler(e: ChangeEvent<HTMLInputElement>) {
-
         setSearchStr(e.target.value)
     }
 
@@ -26,10 +25,6 @@ const Chats: React.FC = () => {
         setOpenSearch((prev) => !prev)
     }
 
-    function selectHandler(e: ChangeEvent<HTMLInputElement>) {
-        setTab(e.target.value)
-    }
-
     return (
         <div className='bg-black text-sm md:space-y-5 space-y-3 sm:w-[calc(70%-6px)] md:w-[calc(70%-10px)] md:p-5 p-3 w-full h-full rounded-xl'>
             <div className='bg-lowBlack h-[36px] text-blue p-2 text-xs flex items-center justify-between rounded-md'>
@@ -42,17 +37,17 @@ const Chats: React.FC = () => {
                         }
                     </div>
                 </button>
-                <div className={`${openSearch && 'hidden'} rounded-sm ${tab === 'all' && 'bg-wrapper'} md:px-5 px-2 py-1`} >
-                    <input type='radio' name='tab' id='all' value='all' onChange={selectHandler} className='hidden'/>
-                    <label htmlFor='all'>All</label>
+                <div onClick={() => setTab('all')}
+                    className={`${openSearch && 'hidden'} cursor-pointer rounded-sm ${tab === 'all' && 'bg-wrapper'} md:px-5 px-2 py-1`} >
+                    All
                 </div>
-                <div className={`${openSearch && 'hidden'} rounded-sm ${tab === 'group' && 'bg-wrapper'} md:px-5 px-2 py-1`} >
-                    <input type='radio' name='tab' id='group' value='group' onChange={selectHandler} className='hidden'/>
-                    <label htmlFor='group'>Groups</label>
+                <div onClick={() => setTab('group')}
+                    className={`${openSearch && 'hidden'} cursor-pointer rounded-sm ${tab === 'group' && 'bg-wrapper'} md:px-5 px-2 py-1`} >
+                    Groups
                 </div>
-                <div className={`${openSearch && 'hidden'} rounded-sm ${tab === 'favorite' && 'bg-wrapper'} md:px-5 px-2 py-1`}>
-                    <input type='radio' name='tab' id='favorite' value='favorite' onChange={selectHandler} className='hidden'/>
-                    <label htmlFor='favorite'>Favorites</label>
+                <div onClick={() => setTab('favorite')}
+                    className={`${openSearch && 'hidden'} cursor-pointer rounded-sm ${tab === 'favorite' && 'bg-wrapper'} md:px-5 px-2 py-1`}>
+                    Favorites
                 </div>
             </div>
             <div className='w-full md:h-[calc(100%-56px)] h-[calc(100%-48px)] p-2'>
