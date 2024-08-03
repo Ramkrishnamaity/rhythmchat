@@ -9,6 +9,7 @@ import { LoginFormData } from '../../lib/types/auth';
 import { toast } from 'react-toastify';
 import { useAppDispatch } from '../../redux/hooks';
 import { setProfile, setToken } from '../../redux/slices/user';
+import ConfirmationModal from '../../components/common/ConfirmationModal';
 
 const Login: React.FC = () => {
 
@@ -16,12 +17,29 @@ const Login: React.FC = () => {
   const dispatch = useAppDispatch()
   const [showPassword, setShowPassword] = useState<boolean>(false)
   const [disable, setDisable] = useState<boolean>(false)
+  const [openModal, setOpenModal] = useState<boolean>(false)
   const [formData, setFormData] = useState<LoginFormData>({
     email: '', password: ''
   })
 
   function clickHandler() {
     setShowPassword((prev) => !prev)
+  }
+
+  async function forgetPassword() {
+    const response = await postRequest(endpoints.resetPassword, { email: formData.email })
+    if (response.status) toast.success(response.message)
+    else toast.error(response.message)
+    setFormData({ email: '', password: '' })
+  }
+
+  function openUIModal() {
+    const regex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
+    if (formData.email === '' || !regex.test(formData.email)) {
+      toast.error("Enter an valid email..!")
+      return
+    }
+    setOpenModal(true)
   }
 
   function changeHandler(e: ChangeEvent<HTMLInputElement>) {
@@ -31,9 +49,9 @@ const Login: React.FC = () => {
   }
 
   async function login(e: FormEvent<HTMLFormElement>) {
-    try{
+    try {
       e.preventDefault()
-      
+
       setDisable(true)
       const response = await postRequest(endpoints.login, formData)
       if (response.status) {
@@ -49,10 +67,10 @@ const Login: React.FC = () => {
         navigate('/dashboard')
       } else {
         setDisable(false)
-        setFormData({email: '', password: ''})
+        setFormData({ email: '', password: '' })
         toast.error(response.message)
       }
-    } catch(error) {
+    } catch (error) {
       console.log(error)
     }
   }
@@ -63,11 +81,14 @@ const Login: React.FC = () => {
       <h1 className='text-center font-medium text-blue text-3xl mb-10 cursor-pointer'>ℝ𝕙𝕪𝕥𝕙𝕞𝕔𝕙𝕒𝕥</h1>
       <form className='space-y-10' onSubmit={login}>
         <div className='space-y-3'>
-          <div className='w-full space-y-2'>
+          <div className='relative w-full space-y-2'>
             <label htmlFor='email'>Email</label>
             <input type='email' name='email' readOnly={disable} onChange={changeHandler} value={formData.email}
               className='text-[black] w-full p-2 rounded-lg shadow-md outline-none text-sm tracking-wider'
               required={true} />
+            <div onClick={openUIModal}
+              className='text-xs z-10 cursor-pointer text-blue absolute top-16 right-0'>
+              Forget Password</div>
           </div>
           <div className='w-full space-y-2 relative'>
             <label htmlFor='password'>Password</label>
@@ -83,7 +104,7 @@ const Login: React.FC = () => {
         </div>
         <button type='submit' disabled={disable} className='bg-black w-full py-3 rounded-2xl shadow-sm flex gap-4 justify-center items-center'>
           {
-            disable && <ImSpinner9 size={20} className='animate-spin' />
+            disable && <ImSpinner9 size={18} className='animate-spin' />
           }
           Login
         </button>
@@ -98,6 +119,10 @@ const Login: React.FC = () => {
         </button>
         <p className='text-center text-sm opacity-70'>Don't have an account? <Link to="/signup" className='text-richBlue'>Sign Up</Link></p>
       </div>
+      {/* modal */}
+      {
+        openModal && (<ConfirmationModal desc={`forget this Account`} btnText='Confirm' triggerFunction={forgetPassword} setOpenModal={setOpenModal} />)
+      }
     </div>
   )
 }

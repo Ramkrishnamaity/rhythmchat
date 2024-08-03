@@ -36,7 +36,7 @@ const Sidebar: React.FC<SidebarPropsType> = ({ showNavbar, setRight, right }) =>
     }
 
     return (
-        <div className={`bg-black text-sm flex flex-col justify-center w-full h-full sm:w-[calc(30%-6px)] md:w-[calc(30%-10px)] rounded-xl p-5 ${!showNavbar ? 'hidden' : 'sm:relative absolute flex'} sm:block`}>
+        <div className={`bg-black z-10 text-sm flex flex-col justify-center w-full h-full sm:w-[calc(30%-6px)] md:w-[calc(30%-10px)] rounded-xl p-5 ${!showNavbar ? 'hidden' : 'sm:relative absolute flex'} sm:block`}>
 
             <div className='absolute top-5 text-md font-semibold uppercase sm:hidden flex gap-3 items-center'>
                 <div className='border-2 rounded-full'>

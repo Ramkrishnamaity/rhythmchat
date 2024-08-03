@@ -154,7 +154,7 @@ const SignUp: React.FC = () => {
                 <button type='submit' disabled={disable} className='bg-black w-full py-3 rounded-2xl shadow-sm flex gap-4 justify-center items-center'>
                     <span>
                         {
-                            disable && <ImSpinner9 size={20} className='animate-spin' />
+                            disable && <ImSpinner9 size={18} className='animate-spin' />
                         }
                     </span>
                     Register
