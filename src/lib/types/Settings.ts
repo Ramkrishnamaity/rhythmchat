@@ -1,5 +1,5 @@
 
 export type ChangePasswordState = {
     oldPassword: string;
-    newPasswprd: string;
+    newPassword: string;
 }

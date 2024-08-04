@@ -12,10 +12,11 @@ module.exports = {
       xl: '1499px',
     },
     colors: {
-      'wrapper': '#3B3E46',
-      'lowBlack': '#282B34',
+      'wrapper': '#dde1e7',
+      'lowBlack': '#595959',
       'black': '#23262F',
-      'blue': '#2F80ED'
+      'blue': '#3498db',
+      'border': '#717377'
     },
     fontFamily: {
       poppins: ["poppins", "sans sarif"]

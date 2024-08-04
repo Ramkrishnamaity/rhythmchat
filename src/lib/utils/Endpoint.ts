@@ -10,3 +10,6 @@ export const endpoints = {
     fileUpload: '/file/upload',
     storyUpload: '/story/upload'
 }
+
+export const Logout = 419
+export const ChangeToken = 401

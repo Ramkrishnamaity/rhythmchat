@@ -1,3 +1,4 @@
+import { ProfileResponceType } from "./Profile"
 
 
 export type LoginFormData = {
@@ -11,4 +12,14 @@ export type SignUpFormData = {
     email: string
     password: string
     otp: string
+}
+
+
+export type UserLoginResponse = {
+    token: string,
+    profile: ProfileResponceType
+}
+
+export type ChangeTokenResponse = {
+    token: string
 }

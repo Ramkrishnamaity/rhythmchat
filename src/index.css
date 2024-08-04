@@ -9,12 +9,12 @@
 ::-webkit-scrollbar {
     width: 3px;
 }
- 
+
 /* Track */
 ::-webkit-scrollbar-track {
     background: #000814;
 }
- 
+
 /* Handle */
 ::-webkit-scrollbar-thumb {
     background: #afb2bf;
@@ -25,7 +25,20 @@
 body {
     width: 100vw;
     min-height: 100vh;
-    background: #4D4E56;
     overflow-x: hidden;
     box-sizing: border-box;
+    background: #dde1e7
+}
+
+.boxshadow {
+    box-shadow: -3px -3px 7px #ffffff73, 2px 2px 5px rgba(94, 104, 121, 0.288);
+}
+
+
+.btnInnershadow {
+    box-shadow: inset 2px 2px 5px #babecc, inset -5px -5px 10px #ffffff73;
+}
+
+.btnOutershadow {
+    box-shadow: -6px -6px 10px rgba(255, 255), -5px -5px 10px #ffffff73;
 }

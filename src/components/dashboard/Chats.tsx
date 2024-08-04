@@ -26,11 +26,11 @@ const Chats: React.FC = () => {
     }
 
     return (
-        <div className='bg-black text-sm md:space-y-5 space-y-3 sm:w-[calc(70%-6px)] md:w-[calc(70%-10px)] md:p-5 p-3 w-full h-full rounded-xl'>
-            <div className='bg-lowBlack h-[36px] text-blue p-2 text-xs flex items-center justify-between rounded-md'>
+        <div className='bg-[white] text-black text-sm md:space-y-5 space-y-3 sm:w-[calc(70%-6px)] md:w-[calc(70%-10px)] md:p-5 p-3 w-full h-full rounded-xl'>
+            <div className='bg-wrapper h-[36px] text-blue p-2 text-xs flex items-center justify-between rounded-md'>
                 <button className={`${openSearch && 'w-full'} rounded-sm flex items-center justify-around`}>
-                    <input type='text' value={searchStr} onChange={changeHandler} onKeyUp={enterHandler}
-                        className={`${openSearch ? 'block' : 'hidden'} w-[calc(100%-50px)] h-[30px] bg-lowBlack outline-none text-[#fff]`} />
+                    <input type='text' placeholder='Search' value={searchStr} onChange={changeHandler} onKeyUp={enterHandler}
+                        className={`${openSearch ? 'block' : 'hidden'} w-[calc(100%-50px)] h-[30px] bg-wrapper outline-none text-lowBlack`} />
                     <div className='p-1' onClick={clickHandler}>
                         {
                             openSearch ? <RxCross2 size={17} /> : <IoSearchOutline size={18} />
@@ -38,15 +38,15 @@ const Chats: React.FC = () => {
                     </div>
                 </button>
                 <div onClick={() => setTab('all')}
-                    className={`${openSearch && 'hidden'} cursor-pointer rounded-sm ${tab === 'all' && 'bg-wrapper'} md:px-5 px-2 py-1`} >
+                    className={`${openSearch && 'hidden'} cursor-pointer rounded-sm ${tab === 'all' && 'bg-[white]'} md:px-5 px-2 py-1`} >
                     All
                 </div>
                 <div onClick={() => setTab('group')}
-                    className={`${openSearch && 'hidden'} cursor-pointer rounded-sm ${tab === 'group' && 'bg-wrapper'} md:px-5 px-2 py-1`} >
+                    className={`${openSearch && 'hidden'} cursor-pointer rounded-sm ${tab === 'group' && 'bg-[white]'} md:px-5 px-2 py-1`} >
                     Groups
                 </div>
                 <div onClick={() => setTab('favorite')}
-                    className={`${openSearch && 'hidden'} cursor-pointer rounded-sm ${tab === 'favorite' && 'bg-wrapper'} md:px-5 px-2 py-1`}>
+                    className={`${openSearch && 'hidden'} cursor-pointer rounded-sm ${tab === 'favorite' && 'bg-[white]'} md:px-5 px-2 py-1`}>
                     Favorites
                 </div>
             </div>

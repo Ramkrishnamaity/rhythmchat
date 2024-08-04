@@ -2,11 +2,14 @@ import { ReactNode } from "react"
 
 
 export type CommonResponseType <T = any> = {
-    status: boolean
-    message: string
-    data?: T
-    error?: any
-    totalPage?: number
+    data: {
+        status: boolean
+        message: string
+        data?: T
+        error?: any
+        totalPage?: number
+    },
+    status: number
 }
 
 

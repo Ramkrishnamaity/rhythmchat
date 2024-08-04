@@ -6,3 +6,12 @@ export type ProfileFormData = {
     about: string,
     image: string
 }
+
+export type ProfileResponceType = {
+    about: string
+    firstName: string
+    lastName: string
+    email: string
+    image: string
+    updatedOn: Date
+}

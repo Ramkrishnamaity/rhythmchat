@@ -8,6 +8,8 @@ import { ImSpinner9 } from "react-icons/im";
 import { IoIosCheckmarkCircle } from "react-icons/io";
 import { SignUpFormData } from '../../lib/types/auth';
 import { toast } from 'react-toastify';
+import { FaLock, FaUser } from 'react-icons/fa';
+import { CommonResponseType } from '../../lib/types';
 
 const SignUp: React.FC = () => {
 
@@ -35,16 +37,16 @@ const SignUp: React.FC = () => {
             if (isOtpSent) {
                 setDisable(true)
 
-                const responce = await postRequest(endpoints.signup, formData)
-
-                if (responce.status) {
-                    toast.success(responce.message)
+                const output: CommonResponseType = await postRequest(endpoints.signup, formData)
+                const response = output.data
+                if (response.status) {
+                    toast.success(response.message)
                     navigate('/login')
                 } else {
                     setDisable(false)
                     setIsOtpSent(false)
                     setFormData({ firstName: '', lastName: '', email: '', password: '', otp: '' })
-                    toast.error(responce.message)
+                    toast.error(response.message)
                 }
             } else {
                 toast.error("Network Error..!")
@@ -65,17 +67,18 @@ const SignUp: React.FC = () => {
                     toast.error("Enter an valid email..!")
                 } else {
                     setDisable(true)
-                    const responce = await postRequest(endpoints.requestotp, { email: formData.email })
-                    if (responce.status) {
+                    const output: CommonResponseType = await postRequest(endpoints.requestotp, { email: formData.email })
+                    const response = output.data
+                    if (response.status) {
                         setIsOtpSent(true)
                         setDisable(false)
-                        toast.success(responce.message)
+                        toast.success(response.message)
                     } else {
                         setDisable(false)
                         setFormData((prev) => {
                             return { ...prev, email: '' }
                         })
-                        toast.error(responce.message)
+                        toast.error(response.message)
                     }
                 }
 
@@ -86,63 +89,63 @@ const SignUp: React.FC = () => {
     }
 
     return (
-        <div className='backdrop-blur-sm w-full xs:my-5 xs:rounded-3xl rounded-none text-[white] bg-wrapper xs:h-max xs:w-[400px] px-5 py-10 tracking-widest text-md space-y-8'>
-            <h1 className='text-center text-blue font-medium text-3xl mb-10 cursor-pointer'>ℝ𝕙𝕪𝕥𝕙𝕞𝕔𝕙𝕒𝕥</h1>
+        <div className='text-lowBlack boxshadow w-full xs:my-5 xs:rounded-3xl rounded-none bg-wrapper xs:h-max xs:w-[400px] px-5 py-10 tracking-widest text-md space-y-8'>
+            <h1 className='text-center text-black font-extrabold text-3xl mb-10 cursor-pointer'><Link to="/" >RhythmChat</Link></h1>
             <form className='space-y-10' onSubmit={signup}>
                 <div className='space-y-3'>
-                    <div className='xs:flex-row flex flex-col gap-1'>
-                        <div className='w-full space-y-2'>
-                            <label htmlFor='firstName'>First Name</label>
-                            <input type='text' name='firstName' readOnly={disable} value={formData.firstName}
-                                onChange={changeHandler}
-                                className='text-[black] w-full p-2 rounded-lg shadow-md outline-none text-sm tracking-wider'
-                                required={true} />
+                    <div className='w-full relative h-[45px]'>
+                        <div className='absolute top-[14px] left-3'>
+                            <FaUser />
                         </div>
-                        <div className='w-full space-y-2'>
-                            <label htmlFor='lastName'>Last Name</label>
-                            <input type='text' name='lastName' readOnly={disable} value={formData.lastName}
-                                onChange={changeHandler}
-                                className='text-[black] w-full p-2 rounded-lg shadow-md outline-none text-sm tracking-wider'
-                                required={true} />
-                        </div>
-                    </div>
-                    <div className='w-full space-y-2'>
-                        <label htmlFor='email'>Email</label>
-                        <input type='email' name='email' value={formData.email} readOnly={isOtpSent}
+                        <input type='email' name='email' placeholder='Email' value={formData.email} readOnly={isOtpSent}
                             onChange={changeHandler}
-                            className='text-[black] w-full p-2 rounded-lg shadow-md outline-none text-sm tracking-wider'
+                            className='text-[black] btnInnershadow w-full h-full rounded-md pl-10 pr-5 outline-none text-sm tracking-wider'
                             required={true} />
                     </div>
-                    <div className='w-full space-y-2 relative'>
-                        <label htmlFor='password'>Password</label>
-                        <input type={showPassword ? 'text' : 'password'} readOnly={disable} name='password' value={formData.password}
+                    <div className='w-full h-[45px] relative'>
+                        <div className='absolute top-[14px] left-3'>
+                            <FaLock />
+                        </div>
+                        <input type={showPassword ? 'text' : 'password'} placeholder="Password" readOnly={disable} name='password' value={formData.password}
                             onChange={changeHandler}
-                            className='text-[black] w-full p-2 rounded-lg shadow-md outline-none text-sm tracking-wider'
+                            className='text-[black] btnInnershadow w-full h-full rounded-md px-10 outline-none text-sm tracking-wider'
                             required={true} />
-                        <span className='absolute text-[black] right-3 bottom-2' onClick={clickHandler}>
+                        <span className='absolute right-3 bottom-3' onClick={clickHandler}>
                             {
                                 showPassword ? <GoEyeClosed size={20} /> : <GoEye size={20} />
                             }
                         </span>
                     </div>
-
+                    <div className='xs:flex-row flex flex-col xs:gap-2 gap-3'>
+                        <div className='w-full h-[45px]'>
+                            <input type='text' name='firstName' placeholder='First Name' readOnly={disable} value={formData.firstName}
+                                onChange={changeHandler}
+                                className='text-[black] btnInnershadow w-full h-full rounded-md px-5 outline-none text-sm tracking-wider'
+                                required={true} />
+                        </div>
+                        <div className='w-full h-[45px]'>
+                            <input type='text' name='lastName' placeholder='Last Name' readOnly={disable} value={formData.lastName}
+                                onChange={changeHandler}
+                                className='text-[black] btnInnershadow w-full h-full rounded-md px-5 outline-none text-sm tracking-wider'
+                                required={true} />
+                        </div>
+                    </div>
                     <div className='flex gap-1'>
                         <div className='w-full space-y-2'>
-                            <label htmlFor='otp'>OTP</label>
-                            <div className='flex gap-1'>
-                                <input type='text' name='otp' readOnly={disable} value={formData.otp} onChange={changeHandler}
-                                className='text-black w-full p-2 rounded-lg shadow-md outline-none text-sm tracking-wider' 
-                                required={true} />
+                            <div className='flex gap-1 h-[45px]'>
+                                <input type='text' name='otp' placeholder='OTP' readOnly={disable} value={formData.otp} onChange={changeHandler}
+                                    className='text-black btnInnershadow w-full h-full rounded-md px-5 outline-none text-sm tracking-wider'
+                                    required={true} />
                                 <div className='w-full flex gap-2 justify-center items-center'>
                                     {
                                         isOtpSent && <span className='text-[#00FF00]'><IoIosCheckmarkCircle size={25} /></span>
                                     }
-                                    <button className='text-center text-sm cursor-pointer'
+                                    <button className='text-center text-blue text-sm cursor-pointer'
                                         disabled={disable}
                                         onClick={sendOtp}
                                     >
                                         {
-                                            isOtpSent ? "Sent" : disable? "Sending..": "Send Otp"
+                                            isOtpSent ? "Sent" : disable ? "Sending.." : "Send Otp"
                                         }
                                     </button>
                                 </div>
@@ -151,7 +154,7 @@ const SignUp: React.FC = () => {
 
                     </div>
                 </div>
-                <button type='submit' disabled={disable} className='bg-black w-full py-3 rounded-2xl shadow-sm flex gap-4 justify-center items-center'>
+                <button type='submit' disabled={disable} className='btnInnershado bg-black text-[white] font-medium text-md w-full h-[50px] rounded-2xl py-3 flex gap-4 justify-center items-center'>
                     <span>
                         {
                             disable && <ImSpinner9 size={18} className='animate-spin' />
@@ -164,11 +167,11 @@ const SignUp: React.FC = () => {
                 <p className='text-center text-sm opacity-70'>Or Sign up with</p>
                 <button
                     disabled={disable}
-                    className='bg-black  w-full cursor-pointer rounded-2xl flex gap-4 justify-center items-center p-3'
+                    className='bg-black btnInnershado text-[white] font-medium text-md h-[50px] w-full cursor-pointer rounded-2xl flex justify-center items-center p-3'
                 >
-                    <span><FcGoogle size={25} /></span> Sign up with Google
+                    <span className='mr-[16px]'><FcGoogle size={20} /></span><span className='mr-[4px] xs:flex hidden'>Sign up with</span>Google
                 </button>
-                <p className='text-center text-sm opacity-70'>Already registerd? <Link to="/login" className='text-richBlue'>Log in</Link></p>
+                <p className='text-center text-sm opacity-70'>Already registerd? <Link to="/login" className='text-blue hover:underline'>Log in</Link></p>
             </div>
         </div>
     )
